@@ -1,0 +1,37 @@
+<center>
+
+<h1>Aidez nous grâce aux dons :)</h1>
+<div style="background-color: pink;width: 50%;">
+  <%= form_tag don_path do |f| %>
+    <article>
+      <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+      <% end %>
+      <label class="amount">
+        <p>Amount:</p>
+        <input type="text" name="user_donation" id="user_donation">€
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-currency="eur"
+            data-description="A month's subscription"
+            data-locale="auto"></script>
+  <% end %>
+</div>
+
+
+<br><br><br><br>
+<%= form_for :user do |f| %>
+  <%= f.text_field :email, placeholder: "example@gmail.com" %> <br>
+  <%= f.submit "Send an email to this mail" %>
+<% end %>
+
+
+<br><br><br><br>
+<a href="/donateurs">TOUT LES DONATEURS</a>
+
+</center>
